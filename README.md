@@ -7,7 +7,7 @@
 [![Platform](https://img.shields.io/badge/platform-Windows-blue?style=flat-square)](https://github.com/Ketan-K/keep-awake)
 [![Downloads](https://img.shields.io/github/downloads/Ketan-K/keep-awake/total?style=flat-square)](https://github.com/Ketan-K/keep-awake/releases)
 
-Keep-Awake is a lightweight, configurable tool that prevents your Windows PC from going to sleep by subtly moving your mouse at regular intervals. Perfect for keeping your status "Active" during presentations, long downloads, or when you just need your computer to stay awake!
+Keep-Awake is a lightweight, configurable tool that prevents your Windows PC from going to sleep by performing quick mouse shakes at regular intervals. The mouse moves slightly and returns to its original position - completely unobtrusive! Perfect for keeping your status "Active" during presentations, long downloads, or when you just need your computer to stay awake!
 
 ## ✨ Features
 
@@ -58,20 +58,16 @@ cd keep-awake
 
 Simply double-click `keep-awake.exe` to launch the status window:
 
-```
-┌─────────────────────────────────────┐
-│ Status                              │
-│ Keeping your PC awake for: 2m 15s  │
-├─────────────────────────────────────┤
-│ Settings                            │
-│ Interval: 60s  |  Shake Size: 10px │
-├─────────────────────────────────────┤
-│ Statistics                          │
-│ Mouse shakes: 3                     │
-├─────────────────────────────────────┤
-│ [Run in Background]  [Exit]         │
-└─────────────────────────────────────┘
-```
+**GUI Interface:**
+- Clean white material design with green status bar
+- Real-time uptime display (formatted as "2m 15s")
+- Mouse shake counter
+- Editable settings with spin boxes:
+  - Interval (1-3600 seconds)
+  - Shake Size (1-100 pixels)
+- "Apply Settings" button (shows "Applied!" when clicked)
+- "More Info / Contribute on GitHub" button
+- "Run in Background" and "Exit" buttons
 
 **Tray Icon Features:**
 - Coffee cup icon in system tray
@@ -110,7 +106,7 @@ Examples:
 
 ### CLI Mode Output Example
 
-When run with arguments, displays a real-time table:
+When run with arguments, displays running status:
 
 ```
 ================================
@@ -118,12 +114,11 @@ KEEP-AWAKE is running
 Interval: 60s | Shake Size: 10px
 ================================
 
-+-------+-------------+-----------------+------------+-----------------+
-| Count | Time        | Current         | Offset     | New             |
-+-------+-------------+-----------------+------------+-----------------+
-|     1 | 10:30:15 AM | [1920, 540]     | [3, -7]    | [1923, 533]     |
-|     2 | 10:31:15 AM | [1923, 533]     | [-2, 5]    | [1921, 538]     |
+Mouse shakes performed every 60 seconds...
+Press Ctrl+C to exit
 ```
+
+**Note:** The shake motion moves the mouse slightly right and immediately back to its original position. No position tracking is shown in CLI mode since the mouse returns to where it started.
 
 ## 🔨 Building from Source
 
@@ -166,14 +161,14 @@ npm run build
 ## 🎨 GUI Features
 
 - **Real-time Status Display** - See uptime formatted as "Xm Ys" for easy reading
-- **Live Statistics** - Track mouse shake count in real-time
-- **Settings Overview** - View current interval and shake size at a glance
-- **Editable Settings** - Adjust interval and shake size on the fly
-- **Apply Feedback** - Button shows "Applied!" confirmation
+- **Live Statistics** - Track mouse shake count in real-time  
+- **Editable Settings** - Adjust interval (1-3600s) and shake size (1-100px) on the fly
+- **Apply Feedback** - Button shows "Applied!" confirmation for 2 seconds
+- **GitHub Integration** - "More Info / Contribute on GitHub" button opens repository
 - **Tray Integration** - Coffee cup icon in system tray for quick access
 - **Single Instance** - Prevents multiple windows from opening
 - **Always On Top** - Status window stays visible (can be minimized to tray)
-- **Clean Material Design** - Modern white interface with green accents
+- **Clean Material Design** - Modern white interface with green status bar and blue accents
 
 ## ⚠️ Disclaimer
 
