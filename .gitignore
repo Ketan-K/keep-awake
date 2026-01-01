@@ -1,12 +1,8 @@
-# Dependencies
-node_modules/
-
 # Build output
 dist/
 
 # Logs
 *.log
-npm-debug.log*
 
 # OS files
 .DS_Store
@@ -20,3 +16,7 @@ Thumbs.db
 
 # Temporary files
 *.tmp
+
+# Build artifacts
+*.zip
+ahk-v1-install.exe

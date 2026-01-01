@@ -25,29 +25,28 @@ Keep-Awake is a lightweight, configurable tool that prevents your Windows PC fro
 ### Option 1: Use Pre-built Executable (No Installation Required!)
 
 1. Download `keep-awake.exe` from [Releases](https://github.com/Ketan-K/keep-awake/releases)
-2. Double-click to run with default settings
-3. Or use command-line for custom configuration:
+2. Run it - that's it! No extraction, no dependencies, no installation!
+   ```bash
+   keep-awake.exe
+   ```
+3. Or customize with command-line options:
    ```bash
    keep-awake.exe --interval 30 --move-size 5
    ```
 
-### Option 2: Run with Node.js
+> **✨ Truly Portable:** Single .exe file (~480KB) with no dependencies - works anywhere on Windows!
+
+### Option 2: Run from Source
 
 ```bash
 # Clone the repository
 git clone https://github.com/Ketan-K/keep-awake.git
 cd keep-awake
 
-# Install dependencies
-npm install
+# Run the AutoHotkey script directly (requires AutoHotkey v1.1)
+"C:\Program Files\AutoHotkey\AutoHotkey.exe" keep-awake.ahk
 
-# Run with default settings (60 second intervals, 10px movement)
-npm start
-
-# Or try different modes
-npm run start:slow   # 120s intervals, 5px movement
-npm run start:fast   # 30s intervals, 15px movement
-npm run start:quiet  # Silent mode
+# Or edit keep-awake.ahk with any text editor and customize
 ```
 
 ## 🎮 Usage
@@ -94,16 +93,17 @@ Examples:
 ## 🔨 Building from Source
 
 ```bash
-# Install dependencies
-npm install
-
-# Build standalone executable
+# 1. Install AutoHotkey v1.1 from https://www.autohotkey.com/
+# 2. Install UPX from https://upx.github.io/ (optional, for compression)
+# 3. Run the build script:
 npm run build
 
-# Build and compress with UPX
-npm run build:release
+# Or build manually:
+"C:\Program Files\AutoHotkey\Compiler\Ahk2Exe.exe" /in keep-awake.ahk /out keep-awake.exe
+upx --best --lzma keep-awake.exe
 
-# Output will be in dist/keep-awake.exe (~21MB compressed)
+# Output: keep-awake.exe (~480KB after UPX compression)
+# This is a SINGLE standalone file - no dependencies!
 ```
 
 ## 🎯 Use Cases
