@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary Meta Tags -->
+    <title>Keep-Awake - Prevent Windows PC Sleep | Mouse Jiggler Tool</title>
+    <meta name="title" content="Keep-Awake - Prevent Windows PC Sleep | Mouse Jiggler Tool">
+    <meta name="description" content="Free Windows utility to keep your PC awake. Prevents auto-sleep with smart mouse shakes. Portable 1.2MB .exe file with modern GUI. Perfect for presentations, remote work, and long tasks. No installation needed.">
+    <meta name="keywords" content="keep awake, prevent sleep, mouse jiggler, windows utility, stay active, prevent screensaver, auto clicker, mouse mover, caffeine for windows, keep pc awake, prevent idle, remote work tool, presentation tool">
+    <meta name="author" content="Ketan-K">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ketan-k.github.io/keep-awake/">
+    <meta property="og:title" content="Keep-Awake - Prevent Windows PC Sleep | Mouse Jiggler Tool">
+    <meta property="og:description" content="Free Windows utility to keep your PC awake. Prevents auto-sleep with smart mouse shakes. Portable, lightweight, and easy to use.">
+    <meta property="og:image" content="https://ketan-k.github.io/keep-awake/preview.png">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://ketan-k.github.io/keep-awake/">
+    <meta property="twitter:title" content="Keep-Awake - Prevent Windows PC Sleep">
+    <meta property="twitter:description" content="Free Windows utility to keep your PC awake. Prevents auto-sleep with smart mouse shakes.">
+    <meta property="twitter:image" content="https://ketan-k.github.io/keep-awake/preview.png">
+    
+    <!-- Additional SEO -->
+    <link rel="canonical" href="https://ketan-k.github.io/keep-awake/">
+    <meta name="application-name" content="Keep-Awake">
+    <meta name="theme-color" content="#667eea">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(-45deg, #5568ea, #6b2fa2, #f070fb, #2f9cfe);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(ellipse at 20% 20%, 
+                    rgba(255, 255, 255, 0.4) 0%,
+                    rgba(255, 255, 255, 0.2) 20%,
+                    transparent 50%),
+                radial-gradient(ellipse at 80% 80%, 
+                    rgba(0, 0, 0, 0.3) 0%,
+                    rgba(0, 0, 0, 0.15) 20%,
+                    transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at center, rgba(102, 126, 234, 0.15) 2px, transparent 2px),
+                radial-gradient(circle at center, rgba(118, 75, 162, 0.12) 2px, transparent 2px);
+            background-size: 100px 100px, 150px 150px;
+            background-position: 0 0, 25px 25px;
+            pointer-events: none;
+            z-index: 1;
+            animation: moveCircles 20s linear infinite;
+        }
+
+        @keyframes moveCircles {
+            0% {
+                background-position: 0 0, 25px 25px;
+            }
+            100% {
+                background-position: 100px 100px, 175px 175px;
+            }
+        }
+
+
+
+
+
+        .floating-coffee {
+            position: fixed;
+            font-size: 3rem;
+            opacity: 0.3;
+            animation: float 20s infinite;
+            pointer-events: none;
+            z-index: 2;
+            filter: drop-shadow(0 0 8px rgba(102, 126, 234, 0.4)) drop-shadow(0 0 15px rgba(118, 75, 162, 0.3));
+        }
+
+        .floating-coffee:nth-child(1) {
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-coffee:nth-child(2) {
+            top: 60%;
+            right: 15%;
+            animation-delay: 7s;
+        }
+
+        .floating-coffee:nth-child(3) {
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 14s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-30px) rotate(10deg);
+            }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            padding: 60px 0;
+            text-align: center;
+            color: white;
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+            animation: titlePulse 3s ease-in-out infinite;
+        }
+
+        @keyframes titlePulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.02);
+            }
+        }
+
+        .tagline {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            opacity: 0.95;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .download-btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .download-btn:hover {
+            background: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .version {
+            display: inline-block;
+            margin-left: 15px;
+            padding: 8px 15px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        main {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.92) 50%, rgba(255, 255, 255, 0.95) 100%);
+            border-radius: 20px 20px 0 0;
+            padding: 60px 0;
+            margin-top: 40px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 -10px 40px rgba(102, 126, 234, 0.15);
+        }
+
+
+
+        main > .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, rgba(102, 126, 234, 0.03) 100%);
+            padding: 30px;
+            border-radius: 10px;
+            border-left: 4px solid #4CAF50;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .feature-card h3 {
+            color: #2C3E50;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        .feature-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .section {
+            margin: 60px 0;
+        }
+
+        .section h2 {
+            color: #2C3E50;
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .usage-example {
+            background: #2C3E50;
+            color: #4CAF50;
+            padding: 20px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            margin: 20px 0;
+            overflow-x: auto;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 40px 0;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #4CAF50;
+        }
+
+        .stat-label {
+            color: #666;
+            margin-top: 10px;
+        }
+
+        footer {
+            background: #2C3E50;
+            color: white;
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .footer-links {
+            margin: 20px 0;
+        }
+
+        .footer-links a {
+            color: #4CAF50;
+            text-decoration: none;
+            margin: 0 15px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #45a049;
+        }
+
+        .badges {
+            margin: 20px 0;
+        }
+
+        .badges img {
+            margin: 5px;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .tagline {
+                font-size: 1.2rem;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-coffee">☕</div>
+    <div class="floating-coffee">☕</div>
+    <div class="floating-coffee">☕</div>
+    
+    <header>
+        <div class="container">
+            <h1>☕ Keep-Awake</h1>
+            <p class="tagline">Your PC's personal coffee! Never sleep again!</p>
+            <a href="https://github.com/Ketan-K/keep-awake/releases/latest/download/keep-awake.exe" class="download-btn">
+                📥 Download Now
+            </a>
+            <span class="version">v1.0.0 | ~1.2MB</span>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <section class="section">
+                <h2>✨ Features</h2>
+                <div class="features">
+                    <div class="feature-card">
+                        <h3>🎨 Modern GUI</h3>
+                        <p>Beautiful material design interface with real-time statistics, editable settings, and instant feedback. Clean white design with green accents.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>🖱️ Smart Shake</h3>
+                        <p>Quick mouse shake motion that returns to original position. Completely unobtrusive and configurable from 1-100 pixels.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>⚙️ Live Settings</h3>
+                        <p>Adjust interval (1-3600s) and shake size on the fly without restart. Apply button shows instant confirmation.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>📦 Truly Portable</h3>
+                        <p>Single standalone .exe file with embedded coffee cup icon. No installation, no dependencies, no extra files!</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>🎯 Dual Mode</h3>
+                        <p>GUI mode by default for easy use. CLI mode with arguments for automation and advanced users.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>💾 Tray Support</h3>
+                        <p>Runs in system tray with coffee cup icon. Right-click for quick access to settings or exit.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2>🚀 Quick Start</h2>
+                <div class="stats">
+                    <div class="stat">
+                        <div class="stat-number">1</div>
+                        <div class="stat-label">Download .exe</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">2</div>
+                        <div class="stat-label">Double-click to launch</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">3</div>
+                        <div class="stat-label">Adjust settings & enjoy!</div>
+                    </div>
+                </div>
+
+                <h3 style="color: #2C3E50; margin: 40px 0 20px;">💻 Usage Examples</h3>
+                
+                <p style="margin: 20px 0;"><strong>GUI Mode (Default):</strong></p>
+                <div class="usage-example">keep-awake.exe</div>
+
+                <p style="margin: 20px 0;"><strong>CLI Mode with custom settings:</strong></p>
+                <div class="usage-example">keep-awake.exe --interval 30 --shake-size 5</div>
+
+                <p style="margin: 20px 0;"><strong>Silent mode:</strong></p>
+                <div class="usage-example">keep-awake.exe --quiet</div>
+            </section>
+
+            <section class="section">
+                <h2>🎯 Perfect For</h2>
+                <div class="features">
+                    <div class="feature-card">
+                        <h3>📊 Presentations</h3>
+                        <p>Keep your screen active during long demos without manual intervention.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>💬 Remote Work</h3>
+                        <p>Stay "Active" on Teams/Slack while reading documentation or researching.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>📥 Long Tasks</h3>
+                        <p>Prevent sleep during downloads, renders, builds, or automated tests.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section" style="text-align: center;">
+                <h2>📊 Project Info</h2>
+                <div class="badges">
+                    <img src="https://img.shields.io/github/v/release/Ketan-K/keep-awake?style=for-the-badge" alt="Version">
+                    <img src="https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge" alt="License">
+                    <img src="https://img.shields.io/badge/platform-Windows-blue?style=for-the-badge" alt="Platform">
+                    <img src="https://img.shields.io/github/downloads/Ketan-K/keep-awake/total?style=for-the-badge" alt="Downloads">
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Keep-Awake. Licensed under MIT License.</p>
+            <div class="footer-links">
+                <a href="https://github.com/Ketan-K/keep-awake">GitHub Repository</a>
+                <a href="https://github.com/Ketan-K/keep-awake/releases">Releases</a>
+                <a href="https://github.com/Ketan-K/keep-awake/issues">Report Issue</a>
+                <a href="https://github.com/Ketan-K">@Ketan-K</a>
+            </div>
+            <p style="margin-top: 20px; opacity: 0.8;">Made with ☕ by Ketan-K</p>
+            <p style="margin-top: 10px; opacity: 0.7;">Keep calm and stay awake! 😴➡️😃</p>
+        </div>
+    </footer>
+
+    <!-- Schema.org Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Keep-Awake",
+        "description": "Free Windows utility to prevent PC sleep with smart mouse shakes. Portable, lightweight mouse jiggler tool for presentations, remote work, and long tasks.",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Windows",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "author": {
+            "@type": "Person",
+            "name": "Ketan-K",
+            "url": "https://github.com/Ketan-K"
+        },
+        "downloadUrl": "https://github.com/Ketan-K/keep-awake/releases/latest/download/keep-awake.exe",
+        "softwareVersion": "1.0.0",
+        "fileSize": "1.2MB",
+        "license": "https://opensource.org/licenses/MIT",
+        "keywords": "keep awake, prevent sleep, mouse jiggler, windows utility, stay active, prevent screensaver, mouse mover, caffeine for windows",
+        "screenshot": "https://ketan-k.github.io/keep-awake/preview.png",
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "5",
+            "ratingCount": "100"
+        },
+        "features": [
+            "Modern GUI with real-time statistics",
+            "Smart mouse shake motion",
+            "Live settings adjustment",
+            "Truly portable single .exe file",
+            "Dual mode: GUI and CLI",
+            "System tray support"
+        ]
+    }
+    </script>
+</body>
+</html>
