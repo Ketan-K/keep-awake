@@ -1,0 +1,35 @@
+{
+  "name": "keep-awake",
+  "version": "1.0.0",
+  "description": "Keep your PC awake while you're away! Prevents system idle with automated mouse movements.",
+  "author": "Ketan-K",
+  "main": "index.js",
+  "bin": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "start:slow": "node index.js --interval 120 --move-size 5",
+    "start:fast": "node index.js --interval 30 --move-size 15",
+    "start:quiet": "node index.js --quiet",
+    "clean": "if exist dist rmdir /s /q dist",
+    "build": "npm run clean && pkg . --targets node18-win-x64 --output dist/keep-awake.exe",
+    "compress": "upx --best --lzma dist/keep-awake.exe",
+    "build:release": "npm run build && npm run compress"
+  },
+  "files": [
+    "index.js",
+    "run.bat",
+    "README.md"
+  ],
+  "dependencies": {
+    "robotjs": "^0.6.0"
+  },
+  "devDependencies": {
+    "pkg": "^5.8.1"
+  },
+  "pkg": {
+    "assets": [
+      "node_modules/robotjs/build/**/*"
+    ],
+    "outputPath": "dist"
+  }
+}
