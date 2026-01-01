@@ -1,40 +1,43 @@
-# ⏰ Keep-Awake
+# ☕ Keep-Awake
 
 > Your PC's personal coffee! Never sleep again! ☕💻
 
 [![Version](https://img.shields.io/github/v/release/Ketan-K/keep-awake?style=flat-square)](https://github.com/Ketan-K/keep-awake/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 [![Platform](https://img.shields.io/badge/platform-Windows-blue?style=flat-square)](https://github.com/Ketan-K/keep-awake)
-[![Node](https://img.shields.io/badge/node-%3E%3D14-brightgreen?style=flat-square)](https://nodejs.org)
 [![Downloads](https://img.shields.io/github/downloads/Ketan-K/keep-awake/total?style=flat-square)](https://github.com/Ketan-K/keep-awake/releases)
 
 Keep-Awake is a lightweight, configurable tool that prevents your Windows PC from going to sleep by subtly moving your mouse at regular intervals. Perfect for keeping your status "Active" during presentations, long downloads, or when you just need your computer to stay awake!
 
 ## ✨ Features
 
-- 🖱️ **Smart Mouse Movement** - Random micro-movements that won't disrupt your work
-- ⚙️ **Fully Configurable** - Adjust interval and movement size via command-line
+- 🖱️ **Smart Mouse Shake** - Quick shake motion that returns to original position
+- 🎨 **User-Friendly GUI** - Beautiful status window showing uptime, settings, and statistics
+- ⚙️ **Fully Configurable** - Adjust interval and shake size via GUI or command-line
+- 📊 **Real-time Monitoring** - Live stats with formatted time display (Xm Ys)
+- 🎯 **Dual Mode** - GUI mode by default, CLI mode with arguments
 - 🤫 **Quiet Mode** - Run silently in the background without console output
-- 📊 **Real-time Monitoring** - Beautiful table showing movement history with timestamps
-- 🎯 **Lightweight** - Minimal resource usage, runs in the background
-- 📦 **Portable** - Standalone .exe available (no Node.js required!)
-- ☕ **Coffee-Powered** - ASCII art that'll wake you up too!
+- ☕ **Custom Coffee Icon** - Distinctive tray icon for easy access
+- 📦 **Truly Portable** - Single standalone .exe (no dependencies, no extra files!)
+- 🚀 **Lightweight** - ~1.2MB, minimal resource usage
 
 ## 🚀 Quick Start
 
-### Option 1: Use Pre-built Executable (No Installation Required!)
+### Option 1: Use Pre-built Executable (Recommended!)
 
 1. Download `keep-awake.exe` from [Releases](https://github.com/Ketan-K/keep-awake/releases)
-2. Run it - that's it! No extraction, no dependencies, no installation!
+2. **Double-click to launch** - Opens a GUI status window!
+   - Shows running time (e.g., "2m 30s")
+   - Displays mouse shake statistics
+   - Click "Run in Background" to minimize to tray
+   - Click "Exit" to close the application
+
+3. Or run from command line for CLI mode:
    ```bash
-   keep-awake.exe
-   ```
-3. Or customize with command-line options:
-   ```bash
-   keep-awake.exe --interval 30 --move-size 5
+   keep-awake.exe --interval 30 --shake-size 5
    ```
 
-> **✨ Truly Portable:** Single .exe file (~480KB) with no dependencies - works anywhere on Windows!
+> **✨ Truly Portable:** Single .exe file (~1.2MB) with embedded coffee icon - works anywhere on Windows!
 
 ### Option 2: Run from Source
 
@@ -51,60 +54,104 @@ cd keep-awake
 
 ## 🎮 Usage
 
-### Command-Line Options
+### GUI Mode (Default)
+
+Simply double-click `keep-awake.exe` to launch the status window:
+
+```
+┌─────────────────────────────────────┐
+│ Status                              │
+│ Keeping your PC awake for: 2m 15s  │
+├─────────────────────────────────────┤
+│ Settings                            │
+│ Interval: 60s  |  Shake Size: 10px │
+├─────────────────────────────────────┤
+│ Statistics                          │
+│ Mouse shakes: 3                     │
+├─────────────────────────────────────┤
+│ [Run in Background]  [Exit]         │
+└─────────────────────────────────────┘
+```
+
+**Tray Icon Features:**
+- Coffee cup icon in system tray
+- Right-click → "Open" to show status window
+- Right-click → "Exit" to close application
+- Hover for tooltip with uptime and shake count
+
+### CLI Mode (Advanced)
+
+Run with arguments to use command-line mode with table output:
 
 ```bash
-keep-awake [options]
+keep-awake.exe [options]
 
 Options:
-  --interval <seconds>    Set interval between movements (default: 60)
-  --move-size <pixels>    Set maximum movement size (default: 10)
+  --interval <seconds>    Set interval between shakes (default: 60)
+  --shake-size <pixels>   Set shake distance (default: 10)
   --quiet                 Suppress console output
-  --help                  Show help message with ASCII art ☕
+  --help                  Show help message
 
 Examples:
-  keep-awake --interval 30 --move-size 5    # Move every 30s with 5px range
-  keep-awake --quiet                         # Run silently
-  keep-awake --help                          # Show that beautiful ASCII art!
+  keep-awake.exe                              # GUI mode (default)
+  keep-awake.exe --interval 30 --shake-size 5 # CLI mode with custom settings
+  keep-awake.exe --quiet                      # CLI silent mode
+  keep-awake.exe --help                       # Show help
 ```
 
 ### Configuration Options
 
 | Option | Description | Default | Range |
 |--------|-------------|---------|-------|
-| `--interval` | Time between movements (seconds) | 60 | 1-3600 |
-| `--move-size` | Maximum pixel offset from current position | 10 | 1-100 |
-| `--quiet` | Suppress all console output | false | - |
-| `--help` | Display help with ASCII art | - | - |
+| `--interval` | Time between shakes (seconds) | 60 | 1-3600 |
+| `--shake-size` | Shake distance in pixels | 10 | 1-100 |
+| `--quiet` | Suppress all console output (CLI mode only) | false | - |
+| `--help` | Display help message | - | - |
 
-### Example Output (Default Mode)
+### CLI Mode Output Example
+
+When run with arguments, displays a real-time table:
 
 ```
-⏰ Keep-Awake is running ☕
-   Interval: 60s | Move Size: 10px
+================================
+KEEP-AWAKE is running
+Interval: 60s | Shake Size: 10px
+================================
 
-┌───────┬─────────────┬─────────────────┬────────────┬─────────────────┐
-│ Count │ Time        │ Current         │ Offset     │ New             │
-├───────┼─────────────┼─────────────────┼────────────┼─────────────────┤
-│     1 │ 10:30:15 AM │ [1920, 540]     │ [3, -7]    │ [1923, 533]     │
-│     2 │ 10:31:15 AM │ [1923, 533]     │ [-2, 5]    │ [1921, 538]     │
++-------+-------------+-----------------+------------+-----------------+
+| Count | Time        | Current         | Offset     | New             |
++-------+-------------+-----------------+------------+-----------------+
+|     1 | 10:30:15 AM | [1920, 540]     | [3, -7]    | [1923, 533]     |
+|     2 | 10:31:15 AM | [1923, 533]     | [-2, 5]    | [1921, 538]     |
 ```
 
 ## 🔨 Building from Source
 
+### Prerequisites
+- [AutoHotkey v1.1](https://www.autohotkey.com/) installed
+- Node.js (for build script only)
+
+### Build Steps
+
 ```bash
-# 1. Install AutoHotkey v1.1 from https://www.autohotkey.com/
-# 2. Install UPX from https://upx.github.io/ (optional, for compression)
-# 3. Run the build script:
+# Clone the repository
+git clone https://github.com/Ketan-K/keep-awake.git
+cd keep-awake
+
+# Build the executable
 npm run build
 
-# Or build manually:
-"C:\Program Files\AutoHotkey\Compiler\Ahk2Exe.exe" /in keep-awake.ahk /out keep-awake.exe
-upx --best --lzma keep-awake.exe
-
-# Output: keep-awake.exe (~480KB after UPX compression)
-# This is a SINGLE standalone file - no dependencies!
+# Output: dist/keep-awake.exe (~1.2MB standalone file)
 ```
+
+### Manual Build
+
+```bash
+# Compile with AutoHotkey
+"C:\Program Files\AutoHotkey\Compiler\Ahk2Exe.exe" /in keep-awake.ahk /out keep-awake.exe /icon keep-awake.ico
+```
+
+**Note:** The `keep-awake.ico` coffee cup icon is included in the repository and embedded into the executable during compilation.
 
 ## 🎯 Use Cases
 
@@ -113,7 +160,20 @@ upx --best --lzma keep-awake.exe
 - 📥 **Downloads** - Prevent sleep during large file transfers
 - 🎥 **Streaming** - Keep your PC awake during broadcasts
 - 📚 **Reading** - No interruptions while you're deep in that article
+- 🧪 **Testing** - Long-running automated tests or builds
 - ☕ **Coffee Breaks** - Because sometimes you need both kinds of awakeness!
+
+## 🎨 GUI Features
+
+- **Real-time Status Display** - See uptime formatted as "Xm Ys" for easy reading
+- **Live Statistics** - Track mouse shake count in real-time
+- **Settings Overview** - View current interval and shake size at a glance
+- **Editable Settings** - Adjust interval and shake size on the fly
+- **Apply Feedback** - Button shows "Applied!" confirmation
+- **Tray Integration** - Coffee cup icon in system tray for quick access
+- **Single Instance** - Prevents multiple windows from opening
+- **Always On Top** - Status window stays visible (can be minimized to tray)
+- **Clean Material Design** - Modern white interface with green accents
 
 ## ⚠️ Disclaimer
 

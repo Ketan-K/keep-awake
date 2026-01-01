@@ -10,7 +10,7 @@
   },
   "scripts": {
     "clean": "if exist dist rmdir /s /q dist",
-    "build": "npm run clean && \"C:\\Program Files\\AutoHotkey\\Compiler\\Ahk2Exe.exe\" /in keep-awake.ahk /out dist\\keep-awake.exe /bin \"C:\\Program Files\\AutoHotkey\\Compiler\\Unicode 64-bit.bin\" && upx --best --lzma dist\\keep-awake.exe"
+    "build": "npm run clean && if not exist dist mkdir dist && \"C:\\Program Files\\AutoHotkey\\Compiler\\Ahk2Exe.exe\" /in keep-awake.ahk /out dist\\keep-awake.exe /bin \"C:\\Program Files\\AutoHotkey\\Compiler\\Unicode 64-bit.bin\" /icon keep-awake.ico"
   },
   "files": [
     "keep-awake.ahk",
