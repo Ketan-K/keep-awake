@@ -7,8 +7,8 @@
     <!-- Primary Meta Tags -->
     <title>Keep-Awake - Prevent Windows PC Sleep | Mouse Jiggler Tool</title>
     <meta name="title" content="Keep-Awake - Prevent Windows PC Sleep | Mouse Jiggler Tool">
-    <meta name="description" content="Free Windows utility to keep your PC awake. Prevents auto-sleep with smart mouse shakes. Portable 1.2MB .exe file with modern GUI. Perfect for presentations, remote work, and long tasks. No installation needed.">
-    <meta name="keywords" content="keep awake, prevent sleep, mouse jiggler, windows utility, stay active, prevent screensaver, auto clicker, mouse mover, caffeine for windows, keep pc awake, prevent idle, remote work tool, presentation tool">
+    <meta name="description" content="Free Windows utility with material design UI, multiple keep-awake modes (F15/Mouse/Key), smart user detection, and timed sessions. Prevents auto-sleep intelligently. Portable 1.2MB .exe. Perfect for presentations, remote work, and long tasks.">
+    <meta name="keywords" content="keep awake, prevent sleep, mouse jiggler, windows utility, stay active, prevent screensaver, auto clicker, mouse mover, caffeine for windows, keep pc awake, prevent idle, remote work tool, presentation tool, smart mode, timed sessions, material design">
     <meta name="author" content="Ketan-K">
     <meta name="robots" content="index, follow">
     
@@ -16,14 +16,14 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ketan-k.github.io/keep-awake/">
     <meta property="og:title" content="Keep-Awake - Prevent Windows PC Sleep | Mouse Jiggler Tool">
-    <meta property="og:description" content="Free Windows utility to keep your PC awake. Prevents auto-sleep with smart mouse shakes. Portable, lightweight, and easy to use.">
+    <meta property="og:description" content="Free Windows utility with material design UI, multiple modes, smart user detection, and timed sessions. Prevents auto-sleep intelligently. Portable and lightweight.">
     <meta property="og:image" content="https://ketan-k.github.io/keep-awake/preview.png">
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://ketan-k.github.io/keep-awake/">
     <meta property="twitter:title" content="Keep-Awake - Prevent Windows PC Sleep">
-    <meta property="twitter:description" content="Free Windows utility to keep your PC awake. Prevents auto-sleep with smart mouse shakes.">
+    <meta property="twitter:description" content="Free Windows utility with material design UI, multiple modes, smart user detection, and timed sessions.">
     <meta property="twitter:image" content="https://ketan-k.github.io/keep-awake/preview.png">
     
     <!-- Additional SEO -->
@@ -141,6 +141,15 @@
             }
         }
 
+        @keyframes bounce {
+            0%, 100% { 
+                transform: translateY(0) rotate(0deg); 
+            }
+            50% { 
+                transform: translateY(-20px) rotate(10deg); 
+            }
+        }
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -228,33 +237,150 @@
 
         .features {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
             margin: 40px 0;
+            align-items: start;
         }
 
         .feature-card {
-            background: linear-gradient(135deg, #f8f9fa 0%, rgba(102, 126, 234, 0.03) 100%);
-            padding: 30px;
-            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid rgba(76, 175, 80, 0.2);
             border-left: 4px solid #4CAF50;
-            transition: transform 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            cursor: pointer;
+            min-height: 140px;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.05) 0%, rgba(102, 126, 234, 0.05) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 0;
+            border-radius: 15px;
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+
+        .feature-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(76, 175, 80, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+        }
+
+        .feature-card:hover::after {
+            opacity: 1;
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(10px, 10px) rotate(180deg); }
         }
 
         .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            transform: translateY(-8px) rotateX(2deg);
+            box-shadow: 
+                0 20px 60px rgba(76, 175, 80, 0.15),
+                0 0 0 1px rgba(76, 175, 80, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+            border-left-width: 5px;
+            z-index: 10;
         }
 
         .feature-card h3 {
-            color: #2C3E50;
-            margin-bottom: 15px;
-            font-size: 1.4rem;
+            color: #1a252f;
+            margin-bottom: 12px;
+            font-size: 1.3rem;
+            position: relative;
+            z-index: 1;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .feature-card:hover h3 {
+            color: #2E7D32;
+            transform: translateX(5px);
+            text-shadow: 0 2px 10px rgba(76, 175, 80, 0.2);
         }
 
         .feature-card p {
-            color: #666;
+            color: #2d3748;
             line-height: 1.6;
+            position: relative;
+            z-index: 1;
+            margin-bottom: 0;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover p {
+            color: #1a252f;
+            margin-bottom: 15px;
+        }
+
+        .feature-detail {
+            max-height: 0;
+            overflow: hidden;
+            margin-top: 0;
+            padding: 0 15px;
+            background: linear-gradient(to right, rgba(76, 175, 80, 0.05), rgba(102, 126, 234, 0.05));
+            border-left: 3px solid #4CAF50;
+            border-radius: 8px;
+            color: #1a252f;
+            font-size: 0.9rem;
+            line-height: 1.7;
+            position: relative;
+            z-index: 1;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+        }
+
+        .feature-detail strong {
+            color: #2E7D32;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .feature-card:hover .feature-detail {
+            max-height: 200px;
+            margin-top: 15px;
+            padding: 15px;
+            opacity: 1;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-5px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .section {
@@ -444,90 +570,301 @@
     
     <header>
         <div class="container">
-            <h1>☕ Keep-Awake</h1>
-            <p class="tagline">Your PC's personal coffee! Never sleep again!</p>
-            <a href="https://github.com/Ketan-K/keep-awake/releases/latest/download/keep-awake.exe" class="download-btn">
-                📥 Download Now
-            </a>
-            <span class="version">v1.0.0 | ~1.2MB</span>
+            <div style="display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                <div style="font-size: 4rem; animation: bounce 2s ease infinite;">☕</div>
+                <div>
+                    <h1 style="margin-bottom: 5px;">Keep-Awake</h1>
+                    <p class="tagline" style="margin: 0;">Your PC's personal coffee! Never sleep again!</p>
+                </div>
+            </div>
+            <div style="margin: 30px 0; padding: 20px; background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); border-radius: 15px; border: 1px solid rgba(255,255,255,0.3);">
+                <div style="display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; margin-bottom: 20px;">
+                    <div style="text-align: center;">
+                        <div style="font-size: 2.5rem; font-weight: bold; color: #fff;">4</div>
+                        <div style="color: rgba(255,255,255,0.9); font-size: 0.9rem;">Keep-Awake Modes</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 2.5rem; font-weight: bold; color: #fff;">1.2MB</div>
+                        <div style="color: rgba(255,255,255,0.9); font-size: 0.9rem;">Tiny & Portable</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 2.5rem; font-weight: bold; color: #fff;">100%</div>
+                        <div style="color: rgba(255,255,255,0.9); font-size: 0.9rem;">Free & Open</div>
+                    </div>
+                </div>
+                <a href="https://github.com/Ketan-K/keep-awake/releases/latest/download/keep-awake.exe" class="download-btn" style="display: inline-block; margin: 0 auto;">
+                    📥 Download v2.0.0 - Free
+                </a>
+            </div>
         </div>
     </header>
 
     <main>
         <div class="container">
-            <section class="section">
-                <h2>✨ Features</h2>
+            <!-- Hero Feature Highlight -->
+            <section class="section" style="background: rgba(255,255,255,0.95); backdrop-filter: blur(20px); border-radius: 20px; padding: 50px; margin: -50px auto 50px; box-shadow: 0 20px 60px rgba(0,0,0,0.15); border: 1px solid rgba(255,255,255,0.5);">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center;">
+                    <div>
+                        <h2 style="font-size: 2.5rem; color: #1a252f; margin-bottom: 20px;">🧠 Smart Mode</h2>
+                        <p style="font-size: 1.2rem; color: #2d3748; line-height: 1.8; margin-bottom: 25px;">
+                            The game-changer! Automatically detects when you're active and pauses itself. No more interference with your work. It's like having an AI assistant that knows when to step aside.
+                        </p>
+                        <div style="background: linear-gradient(135deg, rgba(76,175,80,0.1), rgba(102,126,234,0.1)); padding: 20px; border-radius: 12px; border-left: 4px solid #4CAF50;">
+                            <strong style="color: #2E7D32; display: block; margin-bottom: 10px; font-weight: 700;">💡 Real-World Magic:</strong>
+                            <p style="color: #2d3748; margin: 0; line-height: 1.7;">Reading docs? Stays active. Start typing? Pauses instantly. Move your mouse? Pauses. Stop working? Resumes. All automatic. Zero thinking required.</p>
+                        </div>
+                    </div>
+                    <div style="text-align: center;">
+                        <img src="assets/smart-mode-skipping.png" alt="Smart Mode in Action" style="width: 100%; max-width: 400px; border-radius: 15px; box-shadow: 0 15px 40px rgba(0,0,0,0.2); border: 3px solid rgba(76,175,80,0.3);">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quick Visual Features Grid -->
+            <section class="section" style="background: linear-gradient(135deg, rgba(91,134,229,0.25), rgba(118,75,162,0.25)); backdrop-filter: blur(10px); border-radius: 20px; padding: 50px; border: 1px solid rgba(255,255,255,0.2);">
+                <h2 style="text-align: center; font-size: 2.5rem; color: #fff; margin-bottom: 50px; text-shadow: 2px 2px 10px rgba(0,0,0,0.5);">Why You'll Love It</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px;">
+                    <div style="background: rgba(255,255,255,0.9); padding: 30px; border-radius: 15px; text-align: center; transition: all 0.3s; border: 2px solid transparent;" onmouseover="this.style.transform='translateY(-10px) scale(1.05)'; this.style.borderColor='#4CAF50'; this.style.boxShadow='0 20px 50px rgba(76,175,80,0.3)';" onmouseout="this.style.transform=''; this.style.borderColor='transparent'; this.style.boxShadow='';">
+                        <div style="font-size: 3rem; margin-bottom: 15px;">⏱️</div>
+                        <h3 style="color: #1a252f; margin-bottom: 12px; font-weight: 600;">Timed Sessions</h3>
+                        <p style="color: #2d3748;">15/30/60/120 min presets or custom. Set it and forget it!</p>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.9); padding: 30px; border-radius: 15px; text-align: center; transition: all 0.3s; border: 2px solid transparent;" onmouseover="this.style.transform='translateY(-10px) scale(1.05)'; this.style.borderColor='#4CAF50'; this.style.boxShadow='0 20px 50px rgba(76,175,80,0.3)';" onmouseout="this.style.transform=''; this.style.borderColor='transparent'; this.style.boxShadow='';">
+                        <div style="font-size: 3rem; margin-bottom: 15px;">🎨</div>
+                        <h3 style="color: #1a252f; margin-bottom: 12px; font-weight: 600;">Beautiful UI</h3>
+                        <p style="color: #2d3748;">Material design with live countdown. Modern & clean.</p>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.9); padding: 30px; border-radius: 15px; text-align: center; transition: all 0.3s; border: 2px solid transparent;" onmouseover="this.style.transform='translateY(-10px) scale(1.05)'; this.style.borderColor='#4CAF50'; this.style.boxShadow='0 20px 50px rgba(76,175,80,0.3)';" onmouseout="this.style.transform=''; this.style.borderColor='transparent'; this.style.boxShadow='';">
+                        <div style="font-size: 3rem; margin-bottom: 15px;">🔔</div>
+                        <h3 style="color: #1a252f; margin-bottom: 12px; font-weight: 600;">Smart Notifications</h3>
+                        <p style="color: #2d3748;">Get alerted when your session ends. Never forget!</p>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.9); padding: 30px; border-radius: 15px; text-align: center; transition: all 0.3s; border: 2px solid transparent;" onmouseover="this.style.transform='translateY(-10px) scale(1.05)'; this.style.borderColor='#4CAF50'; this.style.boxShadow='0 20px 50px rgba(76,175,80,0.3)';" onmouseout="this.style.transform=''; this.style.borderColor='transparent'; this.style.boxShadow='';">
+                        <div style="font-size: 3rem; margin-bottom: 15px;">🖱️</div>
+                        <h3 style="color: #1a252f; margin-bottom: 12px; font-weight: 600;">4 Modes</h3>
+                        <p style="color: #2d3748;">F15/Mouse/Key - pick your style. All invisible!</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Screenshots Carousel Style -->
+            <section class="section" style="background: linear-gradient(135deg, rgba(47,156,254,0.2), rgba(118,75,162,0.2)); backdrop-filter: blur(10px); border-radius: 20px; padding: 50px; border: 1px solid rgba(255,255,255,0.2);">
+                <h2 style="text-align: center; font-size: 2.5rem; color: #fff; margin-bottom: 30px; text-shadow: 2px 2px 10px rgba(0,0,0,0.5);">See It In Action</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; margin: 40px 0;">
+                    <div style="background: rgba(255,255,255,0.95); padding: 20px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); transition: all 0.3s;" onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 20px 50px rgba(0,0,0,0.25)';" onmouseout="this.style.transform=''; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.15)';">
+                        <img src="assets/main-interface.png" alt="Main Interface" style="width: 100%; border-radius: 10px; margin-bottom: 15px;">
+                        <h3 style="color: #1a252f; margin-bottom: 8px; text-align: center; font-weight: 600;">Main Interface</h3>
+                        <p style="color: #2d3748; text-align: center; margin: 0;">All settings at your fingertips</p>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.95); padding: 20px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); transition: all 0.3s;" onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 20px 50px rgba(0,0,0,0.25)';" onmouseout="this.style.transform=''; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.15)';">
+                        <img src="assets/timed-mode.png" alt="Timed Mode" style="width: 100%; border-radius: 10px; margin-bottom: 15px;">
+                        <h3 style="color: #1a252f; margin-bottom: 8px; text-align: center; font-weight: 600;">Live Countdown</h3>
+                        <p style="color: #2d3748; text-align: center; margin: 0;">Real-time timer display</p>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.95); padding: 20px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); transition: all 0.3s;" onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 20px 50px rgba(0,0,0,0.25)';" onmouseout="this.style.transform=''; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.15)';">
+                        <img src="assets/smart-mode-skipping.png" alt="Smart Mode" style="width: 100%; border-radius: 10px; margin-bottom: 15px;">
+                        <h3 style="color: #1a252f; margin-bottom: 8px; text-align: center; font-weight: 600;">Smart Detection</h3>
+                        <p style="color: #2d3748; text-align: center; margin: 0;">Auto-pause indicator</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- All Features with Glassmorphic Design -->
+            <section class="section" style="background: linear-gradient(135deg, rgba(85,104,234,0.2), rgba(240,112,251,0.2)); backdrop-filter: blur(10px); border-radius: 20px; padding: 50px; border: 1px solid rgba(255,255,255,0.2);">
+                <h2 style="text-align: center; font-size: 2.5rem; color: #fff; margin-bottom: 50px; text-shadow: 2px 2px 10px rgba(0,0,0,0.5);">Every Feature You Need</h2>
                 <div class="features">
                     <div class="feature-card">
-                        <h3>🎨 Modern GUI</h3>
-                        <p>Beautiful material design interface with real-time statistics, editable settings, and instant feedback. Clean white design with green accents.</p>
+                        <h3>🎨 Material Design UI</h3>
+                        <p>Beautiful green and white interface with proper alignment, real-time status updates, and countdown timer. Clean, modern, and intuitive.</p>
+                        <div class="feature-detail">
+                            <strong>Why it matters:</strong> Professional appearance with instant visual feedback. See exactly what's happening at a glance with color-coded status indicators and live updates.
+                        </div>
                     </div>
                     <div class="feature-card">
-                        <h3>🖱️ Smart Shake</h3>
-                        <p>Quick mouse shake motion that returns to original position. Completely unobtrusive and configurable from 1-100 pixels.</p>
+                        <h3>⏱️ Duration Control</h3>
+                        <p>Choose Infinite or Timed mode with quick presets (15/30/60/120 min) or custom duration. Real-time countdown display shows remaining time.</p>
+                        <div class="feature-detail">
+                            <strong>Example:</strong> Set a 30-minute timer for your lunch break, enable notifications, and get alerted when it's time to return - perfect for maintaining work-life balance!
+                        </div>
                     </div>
                     <div class="feature-card">
-                        <h3>⚙️ Live Settings</h3>
-                        <p>Adjust interval (1-3600s) and shake size on the fly without restart. Apply button shows instant confirmation.</p>
+                        <h3>🖱️ Multiple Modes</h3>
+                        <p>4 keep-awake methods: F15 Key (silent), Mouse Shake, Mouse Move, or Key Press. Choose what works best for your workflow.</p>
+                        <div class="feature-detail">
+                            <strong>Pro tip:</strong> F15 is completely invisible and safe for all applications. Mouse modes work great for presentations. Key Press is perfect when F15 isn't recognized.
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <h3>🧠 Smart Mode</h3>
+                        <p>Automatically detects user activity and pauses keep-awake when you're using your PC. Shows real-time skip indicator in status panel.</p>
+                        <div class="feature-detail">
+                            <strong>How it helps:</strong> Never worry about interfering with your work. Smart Mode detects when you're typing, moving mouse, or actively using your PC and automatically pauses.
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <h3>🔔 Notifications</h3>
+                        <p>Optional notification when timed session ends. Visual feedback on all settings changes. Stay informed without being intrusive.</p>
+                        <div class="feature-detail">
+                            <strong>Stay on track:</strong> Get desktop notifications when your session ends. No more forgetting you left it running or wondering when your break is over.
+                        </div>
                     </div>
                     <div class="feature-card">
                         <h3>📦 Truly Portable</h3>
-                        <p>Single standalone .exe file with embedded coffee cup icon. No installation, no dependencies, no extra files!</p>
+                        <p>Single standalone .exe file with embedded coffee cup icon. No installation, no dependencies, no extra files! Just download and run.</p>
+                        <div class="feature-detail">
+                            <strong>USB friendly:</strong> Carry it on a USB drive, run it from network shares, use it on locked-down work PCs. Works everywhere without admin rights.
+                        </div>
                     </div>
                     <div class="feature-card">
-                        <h3>🎯 Dual Mode</h3>
-                        <p>GUI mode by default for easy use. CLI mode with arguments for automation and advanced users.</p>
+                        <h3>🎯 Dynamic Controls</h3>
+                        <p>Shake/Move size only shows for mouse modes. Smart UI adapts to your selections. Frequency adjustable from 1-3600 seconds.</p>
+                        <div class="feature-detail">
+                            <strong>Adaptive UI:</strong> Controls appear and hide based on your mode selection. No clutter, just the options you need for your chosen keep-awake method.
+                        </div>
                     </div>
                     <div class="feature-card">
-                        <h3>💾 Tray Support</h3>
-                        <p>Runs in system tray with coffee cup icon. Right-click for quick access to settings or exit.</p>
+                        <h3>💾 Tray Integration</h3>
+                        <p>Runs in system tray with coffee cup icon. Right-click for quick access. Live tooltip shows uptime and statistics.</p>
+                        <div class="feature-detail">
+                            <strong>Always accessible:</strong> Minimize to tray and it stays running silently. Hover over the icon to see how long it's been active without opening the window.
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <h3>📊 Live Statistics</h3>
+                        <p>Real-time uptime display, mode indicator, frequency, and remaining time. Always know what's happening at a glance.</p>
+                        <div class="feature-detail">
+                            <strong>Full transparency:</strong> See exactly how long it's been running, what mode is active, and when it will stop (if timed). No guessing, just facts.
+                        </div>
                     </div>
                 </div>
             </section>
 
-            <section class="section">
-                <h2>🚀 Quick Start</h2>
-                <div class="stats">
-                    <div class="stat">
-                        <div class="stat-number">1</div>
-                        <div class="stat-label">Download .exe</div>
+            <!-- Quick Start with Visual Steps -->
+            <section class="section" style="background: linear-gradient(135deg, rgba(46,125,50,0.7), rgba(56,142,60,0.65)); backdrop-filter: blur(10px); border-radius: 20px; padding: 50px; border: 2px solid rgba(255,255,255,0.25);">
+                <h2 style="text-align: center; font-size: 2.5rem; color: #fff; margin-bottom: 40px; text-shadow: 2px 2px 10px rgba(0,0,0,0.5);">Get Started in 10 Seconds</h2>
+                <div style="display: flex; justify-content: center; gap: 50px; flex-wrap: wrap; margin-bottom: 40px;">
+                    <div style="text-align: center; flex: 1; min-width: 200px;">
+                        <div style="width: 80px; height: 80px; background: rgba(255,255,255,0.95); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 2.5rem; font-weight: bold; color: #4CAF50; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">1</div>
+                        <h3 style="color: #fff; margin-bottom: 10px; font-size: 1.3rem;">Download</h3>
+                        <p style="color: rgba(255,255,255,0.9);">One-click download, 1.2MB file</p>
                     </div>
-                    <div class="stat">
-                        <div class="stat-number">2</div>
-                        <div class="stat-label">Double-click to launch</div>
+                    <div style="text-align: center; flex: 1; min-width: 200px;">
+                        <div style="width: 80px; height: 80px; background: rgba(255,255,255,0.95); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 2.5rem; font-weight: bold; color: #4CAF50; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">2</div>
+                        <h3 style="color: #fff; margin-bottom: 10px; font-size: 1.3rem;">Launch</h3>
+                        <p style="color: rgba(255,255,255,0.9);">Double-click, no install needed</p>
                     </div>
-                    <div class="stat">
-                        <div class="stat-number">3</div>
-                        <div class="stat-label">Adjust settings & enjoy!</div>
+                    <div style="text-align: center; flex: 1; min-width: 200px;">
+                        <div style="width: 80px; height: 80px; background: rgba(255,255,255,0.95); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 2.5rem; font-weight: bold; color: #4CAF50; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">3</div>
+                        <h3 style="color: #fff; margin-bottom: 10px; font-size: 1.3rem;">Enjoy</h3>
+                        <p style="color: rgba(255,255,255,0.9);">Click Start and relax!</p>
                     </div>
                 </div>
 
-                <h3 style="color: #2C3E50; margin: 40px 0 20px;">💻 Usage Examples</h3>
+                <h3 style="color: #fff; margin: 40px 0 20px; text-align: center; font-size: 1.5rem;">💻 Usage Examples</h3>
                 
-                <p style="margin: 20px 0;"><strong>GUI Mode (Default):</strong></p>
-                <div class="usage-example">keep-awake.exe</div>
-
-                <p style="margin: 20px 0;"><strong>CLI Mode with custom settings:</strong></p>
-                <div class="usage-example">keep-awake.exe --interval 30 --shake-size 5</div>
-
-                <p style="margin: 20px 0;"><strong>Silent mode:</strong></p>
-                <div class="usage-example">keep-awake.exe --quiet</div>
+                <div style="display: grid; gap: 15px; max-width: 800px; margin: 0 auto;">
+                    <div>
+                        <p style="color: rgba(255,255,255,0.95); margin-bottom: 10px;"><strong>GUI Mode (Default):</strong></p>
+                        <div class="usage-example" style="background: rgba(0,0,0,0.3); color: #4CAF50;">keep-awake.exe</div>
+                    </div>
+                    <div>
+                        <p style="color: rgba(255,255,255,0.95); margin-bottom: 10px;"><strong>CLI with custom settings:</strong></p>
+                        <div class="usage-example" style="background: rgba(0,0,0,0.3); color: #4CAF50;">keep-awake.exe --interval 30 --shake-size 5</div>
+                    </div>
+                    <div>
+                        <p style="color: rgba(255,255,255,0.95); margin-bottom: 10px;"><strong>Silent mode:</strong></p>
+                        <div class="usage-example" style="background: rgba(0,0,0,0.3); color: #4CAF50;">keep-awake.exe --quiet</div>
+                    </div>
+                </div>
             </section>
 
-            <section class="section">
-                <h2>🎯 Perfect For</h2>
+            <!-- Perfect For - Interactive Cards -->
+            <section class="section" style="background: linear-gradient(135deg, rgba(102,126,234,0.2), rgba(91,134,229,0.2)); backdrop-filter: blur(10px); border-radius: 20px; padding: 50px; border: 1px solid rgba(255,255,255,0.2);">
+                <h2 style="text-align: center; font-size: 2.5rem; color: #fff; margin-bottom: 50px; text-shadow: 2px 2px 10px rgba(0,0,0,0.5);">🎯 Perfect For</h2>
                 <div class="features">
                     <div class="feature-card">
-                        <h3>📊 Presentations</h3>
-                        <p>Keep your screen active during long demos without manual intervention.</p>
+                        <h3>📊 Presentations & Demos</h3>
+                        <p>Set timed mode with auto-stop after your presentation. Smart Mode pauses when you interact with slides.</p>
+                        <div class="feature-detail">
+                            <strong>Real scenario:</strong> 45-minute demo? Set it to 1 hour with notifications. Smart Mode won't interfere with your mouse clicks, and you'll be alerted when time's up.
+                        </div>
                     </div>
                     <div class="feature-card">
-                        <h3>💬 Remote Work</h3>
-                        <p>Stay "Active" on Teams/Slack while reading documentation or researching.</p>
+                        <h3>💬 Remote Work & Meetings</h3>
+                        <p>Stay "Active" on Teams/Slack while reading. Smart Mode automatically pauses when you type or move your mouse!</p>
+                        <div class="feature-detail">
+                            <strong>Common use:</strong> Reading long docs or taking notes? Enable Smart Mode with F15 - you'll stay active while reading, but it won't interfere when you type.
+                        </div>
                     </div>
                     <div class="feature-card">
-                        <h3>📥 Long Tasks</h3>
-                        <p>Prevent sleep during downloads, renders, builds, or automated tests.</p>
+                        <h3>📥 Downloads & Uploads</h3>
+                        <p>Set custom duration for large file transfers. Get notified when your session ends.</p>
+                        <div class="feature-detail">
+                            <strong>Example:</strong> Uploading a 50GB backup overnight? Set it to 8 hours with notifications. Wake up to a notification that it's done, not a sleeping PC!
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <h3>☕ Coffee & Lunch Breaks</h3>
+                        <p>Set a 15-30 minute timer, enable notifications, and get alerted when it's time to come back!</p>
+                        <div class="feature-detail">
+                            <strong>Work-life balance:</strong> Take proper breaks without worrying about your PC sleeping or status changing. Get notified exactly when break time is over.
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <h3>🎥 Streaming & Recording</h3>
+                        <p>Use F15 mode for silent, non-intrusive keep-awake during broadcasts without interrupting your workflow.</p>
+                        <div class="feature-detail">
+                            <strong>Streamer's choice:</strong> F15 won't show in screen recordings, won't trigger shortcuts, and won't move your cursor. Perfect for 3+ hour streams.
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <h3>🧪 Automated Testing</h3>
+                        <p>Perfect for long-running automated tests. Choose infinite mode and run in background without distraction.</p>
+                        <div class="feature-detail">
+                            <strong>Dev workflow:</strong> Running Selenium tests for 2 hours? Set infinite mode, minimize to tray, and let it prevent sleep while your tests complete.
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <h3>🎨 Rendering & Compilation</h3>
+                        <p>Keep PC awake during long renders, builds, or video exports with custom duration settings.</p>
+                        <div class="feature-detail">
+                            <strong>Creative workflow:</strong> 3D render taking 4 hours? Set a custom 5-hour duration with notifications. Come back to a finished render, not a sleeping PC.
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <h3>📚 Reading & Research</h3>
+                        <p>Stay active while reading documentation, articles, or e-books. Smart Mode detects when you scroll or interact.</p>
+                        <div class="feature-detail">
+                            <strong>Study sessions:</strong> Reading technical docs? Smart Mode keeps you active while you read, pauses when you take notes, and resumes when you stop typing.
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <h3>🎮 Game Downloads</h3>
+                        <p>Prevent sleep during large game downloads on Steam, Epic, or other platforms with timed mode.</p>
+                        <div class="feature-detail">
+                            <strong>Gamer scenario:</strong> Downloading a 100GB game? Set it to 3 hours, enable Smart Mode so it won't interfere if you play another game, get notified when ready.
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <h3>🔄 System Updates</h3>
+                        <p>Keep PC awake during Windows updates, driver installations, or system maintenance tasks.</p>
+                        <div class="feature-detail">
+                            <strong>IT scenario:</strong> Installing updates that require staying awake? Set timed mode for expected duration plus buffer. Never worry about updates failing due to sleep.
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <h3>💼 Client Calls & Webinars</h3>
+                        <p>Set exact duration for scheduled calls or webinars. Smart Mode won't interfere with your camera or screen sharing.</p>
+                        <div class="feature-detail">
+                            <strong>Professional use:</strong> 1-hour webinar? Set 75 minutes with F15 mode. Stay active, won't interfere with Zoom/Teams, and auto-stops after the call.
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <h3>🎓 Online Training</h3>
+                        <p>Watch training videos or attend online courses without PC sleeping. Perfect for long certification courses.</p>
+                        <div class="feature-detail">
+                            <strong>Learning mode:</strong> 3-hour course? Set custom 3.5 hours, use Smart Mode to pause when you take quiz breaks, get notified when course time is complete.
+                        </div>
                     </div>
                 </div>
             </section>
@@ -564,7 +901,7 @@
         "@context": "https://schema.org",
         "@type": "SoftwareApplication",
         "name": "Keep-Awake",
-        "description": "Free Windows utility to prevent PC sleep with smart mouse shakes. Portable, lightweight mouse jiggler tool for presentations, remote work, and long tasks.",
+        "description": "Free Windows utility with material design UI, multiple keep-awake modes (F15/Mouse/Key), smart user detection, and timed sessions. Portable mouse jiggler tool for presentations, remote work, and long tasks.",
         "applicationCategory": "UtilitiesApplication",
         "operatingSystem": "Windows",
         "offers": {
@@ -578,23 +915,27 @@
             "url": "https://github.com/Ketan-K"
         },
         "downloadUrl": "https://github.com/Ketan-K/keep-awake/releases/latest/download/keep-awake.exe",
-        "softwareVersion": "1.0.0",
+        "softwareVersion": "2.0.0",
         "fileSize": "1.2MB",
         "license": "https://opensource.org/licenses/MIT",
-        "keywords": "keep awake, prevent sleep, mouse jiggler, windows utility, stay active, prevent screensaver, mouse mover, caffeine for windows",
-        "screenshot": "https://ketan-k.github.io/keep-awake/preview.png",
+        "keywords": "keep awake, prevent sleep, mouse jiggler, windows utility, stay active, prevent screensaver, mouse mover, caffeine for windows, smart mode, timed sessions, material design",
+        "screenshot": "https://ketan-k.github.io/keep-awake/assets/main-interface.png",
         "aggregateRating": {
             "@type": "AggregateRating",
             "ratingValue": "5",
             "ratingCount": "100"
         },
         "features": [
-            "Modern GUI with real-time statistics",
-            "Smart mouse shake motion",
-            "Live settings adjustment",
+            "Material Design UI with green theme",
+            "Duration control (Infinite/Timed with presets)",
+            "Multiple modes (F15/Mouse Shake/Mouse Move/Key Press)",
+            "Smart Mode with user activity detection",
+            "Notifications and visual feedback",
+            "Dynamic controls that adapt to selections",
+            "Real-time statistics and countdown timer",
             "Truly portable single .exe file",
             "Dual mode: GUI and CLI",
-            "System tray support"
+            "System tray integration"
         ]
     }
     </script>
