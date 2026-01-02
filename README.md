@@ -7,19 +7,67 @@
 [![Platform](https://img.shields.io/badge/platform-Windows-blue?style=flat-square)](https://github.com/Ketan-K/keep-awake)
 [![Downloads](https://img.shields.io/github/downloads/Ketan-K/keep-awake/total?style=flat-square)](https://github.com/Ketan-K/keep-awake/releases)
 
-Keep-Awake is a lightweight, configurable tool that prevents your Windows PC from going to sleep by performing quick mouse shakes at regular intervals. The mouse moves slightly and returns to its original position - completely unobtrusive! Perfect for keeping your status "Active" during presentations, long downloads, or when you just need your computer to stay awake!
+Keep-Awake is a lightweight, feature-rich tool that prevents your Windows PC from going to sleep. With multiple keep-awake modes, smart user detection, and a beautiful material design interface, it's the perfect solution for keeping your status "Active" during presentations, long downloads, or when you just need your computer to stay awake!
+
+## 📸 Screenshots
+
+<p align="center">
+  <img src="assets/main-interface.png" alt="Keep-Awake Main Interface" width="400">
+  <br>
+  <em>Main interface with material design and all settings</em>
+</p>
+
+<p align="center">
+  <img src="assets/timed-mode.png" alt="Timed Mode with Countdown" width="400">
+  <br>
+  <em>Timed mode showing countdown timer</em>
+</p>
+
+<p align="center">
+  <img src="assets/smart-mode-skipping.png" alt="Smart Mode Indicator" width="400">
+  <br>
+  <em>Smart mode actively detecting and skipping when user is active</em>
+</p>
 
 ## ✨ Features
 
-- 🖱️ **Smart Mouse Shake** - Quick shake motion that returns to original position
-- 🎨 **User-Friendly GUI** - Beautiful status window showing uptime, settings, and statistics
-- ⚙️ **Fully Configurable** - Adjust interval and shake size via GUI or command-line
-- 📊 **Real-time Monitoring** - Live stats with formatted time display (Xm Ys)
+### 🎨 Modern Material Design UI
+- Clean green and white interface with proper alignment
+- Real-time status updates with countdown timer
+- Consolidated settings panel with intuitive layout
+- Always-on-top status window with tray integration
+
+### ⏱️ Duration Control
+- **Infinite Mode** - Run continuously until manually stopped
+- **Timed Mode** - Auto-stop after set duration
+- Quick presets: 15 min, 30 min, 1 hour, 2 hours
+- Custom duration support (1-1440 minutes)
+- Real-time countdown display
+
+### 🖱️ Multiple Keep-Awake Modes
+- **F15 Key** (Default) - Silent, non-intrusive key press
+- **Mouse Shake** - Quick horizontal mouse shake
+- **Mouse Move** - Diagonal mouse movement  
+- **Key Press** - Shift key press (harmless)
+
+### 🧠 Smart Mode
+- Automatically detects user activity
+- Pauses keep-awake when you're using your PC
+- Real-time skip indicator in status panel
+- 10-second idle threshold detection
+
+### 🔔 Notifications & Feedback
+- Optional notification when timed session ends
+- Visual feedback on settings changes
+- System tray integration with coffee icon
+- Live statistics and uptime tracking
+
+### 🎯 Additional Features
+- 📊 **Real-time Monitoring** - Live stats with formatted time display
 - 🎯 **Dual Mode** - GUI mode by default, CLI mode with arguments
-- 🤫 **Quiet Mode** - Run silently in the background without console output
-- ☕ **Custom Coffee Icon** - Distinctive tray icon for easy access
-- 📦 **Truly Portable** - Single standalone .exe (no dependencies, no extra files!)
-- 🚀 **Lightweight** - ~1.2MB, minimal resource usage
+- 🤫 **Quiet Mode** - Run silently in the background
+- 📦 **Truly Portable** - Single standalone .exe (~1.2MB)
+- 🚀 **Lightweight** - Minimal resource usage
 
 ## 🚀 Quick Start
 
@@ -56,24 +104,31 @@ cd keep-awake
 
 ### GUI Mode (Default)
 
-Simply double-click `keep-awake.exe` to launch the status window:
+Simply double-click `keep-awake.exe` to launch the beautiful interface:
 
-**GUI Interface:**
-- Clean white material design with green status bar
-- Real-time uptime display (formatted as "2m 15s")
-- Mouse shake counter
-- Editable settings with spin boxes:
-  - Interval (1-3600 seconds)
-  - Shake Size (1-100 pixels)
-- "Apply Settings" button (shows "Applied!" when clicked)
-- "More Info / Contribute on GitHub" button
-- "Run in Background" and "Exit" buttons
+**Main Interface Features:**
+- 🎨 **Material Design** - Clean green and white theme
+- ⏱️ **Duration Settings** 
+  - Choose Infinite or Timed mode
+  - Quick presets (15/30/60/120 minutes) or custom duration
+  - Real-time countdown when in timed mode
+- 🖱️ **Mode Selection**
+  - F15 Key (default, silent)
+  - Mouse Shake (horizontal)
+  - Mouse Move (diagonal)
+  - Key Press (Shift key)
+- 🔧 **Smart Controls**
+  - Shake/Move size (only shown for mouse modes)
+  - Frequency adjustment (1-3600 seconds)
+- 🧠 **Smart Mode** - Auto-detects user activity and pauses
+- 🔔 **Notifications** - Optional alert when session ends
+- 📊 **Live Status** - Shows mode, frequency, and remaining time
 
 **Tray Icon Features:**
 - Coffee cup icon in system tray
-- Right-click → "Open" to show status window
-- Right-click → "Exit" to close application
-- Hover for tooltip with uptime and shake count
+- Right-click → "Open" to show window
+- Right-click → "Exit" to close
+- Hover for tooltip with stats
 
 ### CLI Mode (Advanced)
 
@@ -150,25 +205,28 @@ npm run build
 
 ## 🎯 Use Cases
 
-- 📊 **Presentations** - Keep your screen active during long demos
-- 💬 **Teams/Slack** - Stay "Active" while reading documentation
-- 📥 **Downloads** - Prevent sleep during large file transfers
-- 🎥 **Streaming** - Keep your PC awake during broadcasts
-- 📚 **Reading** - No interruptions while you're deep in that article
+- 📊 **Presentations** - Keep screen active during long demos with timed auto-stop
+- 💬 **Teams/Slack** - Stay "Active" while reading documentation (Smart Mode pauses when you type!)
+- 📥 **Downloads** - Prevent sleep during large file transfers with custom duration
+- 🎥 **Streaming** - Keep PC awake during broadcasts with F15 mode (silent)
+- 📚 **Reading** - No interruptions while deep in articles
 - 🧪 **Testing** - Long-running automated tests or builds
-- ☕ **Coffee Breaks** - Because sometimes you need both kinds of awakeness!
+- ☕ **Coffee Breaks** - Set a timer and get notified when it's time to come back!
 
 ## 🎨 GUI Features
 
-- **Real-time Status Display** - See uptime formatted as "Xm Ys" for easy reading
-- **Live Statistics** - Track mouse shake count in real-time  
-- **Editable Settings** - Adjust interval (1-3600s) and shake size (1-100px) on the fly
-- **Apply Feedback** - Button shows "Applied!" confirmation for 2 seconds
-- **GitHub Integration** - "More Info / Contribute on GitHub" button opens repository
-- **Tray Integration** - Coffee cup icon in system tray for quick access
-- **Single Instance** - Prevents multiple windows from opening
-- **Always On Top** - Status window stays visible (can be minimized to tray)
-- **Clean Material Design** - Modern white interface with green status bar and blue accents
+**v2.0 Material Design Interface:**
+- 🎨 **Modern Layout** - Green and white theme with proper grid alignment
+- ⏱️ **Duration Control** - Infinite or Timed with countdown display
+- 🖱️ **4 Keep-Awake Modes** - F15, Mouse Shake, Mouse Move, Key Press
+- 🧠 **Smart Mode** - Auto-detects user activity with skip indicator
+- 🔔 **Notifications** - Optional alerts when session ends
+- 📊 **Real-time Stats** - Live uptime, mode, frequency, and remaining time
+- 🎯 **Dynamic Controls** - Shake size only shows for mouse modes
+- ☕ **Tray Integration** - Coffee cup icon with quick access
+- ✅ **Visual Feedback** - "Applied!" confirmation on settings changes
+- 🔄 **Single Instance** - Prevents multiple windows
+- 📌 **Always On Top** - Option to keep window visible (can minimize to tray)
 
 ## ⚠️ Disclaimer
 
