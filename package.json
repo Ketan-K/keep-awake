@@ -1,6 +1,6 @@
 {
   "name": "keep-awake",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Keep your PC awake while you're away! Prevents system idle with automated mouse movements.",
   "author": "Ketan-K",
   "license": "MIT",
